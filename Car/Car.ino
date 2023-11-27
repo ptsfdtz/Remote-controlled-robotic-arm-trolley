@@ -139,7 +139,8 @@ void loop() {
       begin4 = begin4 - 5;
       pwm.setPWM(3, 0, begin4);
       Serial.print(begin4);
-      if (begin4 < 245) {
+      if (begin4 < 245)  //限位
+      {
         begin4 = 245;
       }
     }
