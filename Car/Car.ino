@@ -27,7 +27,8 @@ int begin2 = 250;
 int begin3 = 80;
 int begin4 = 280;
 
-void setup() {
+void setup()
+{
   motor.speed(100);
   Serial.begin(9600);
   error = ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);
@@ -36,13 +37,17 @@ void setup() {
   servos_begin();
 }
 
-void loop() {
+void loop()
+{
   if (error == 1)
     return;
 
-  if (type == 2) {
+  if (type == 2)
+  {
     return;
-  } else {
+  }
+  else
+  {
     ps2x.read_gamepad(false, vibrate);
 
     byte LY = ps2x.Analog(PSS_LY);
@@ -50,96 +55,116 @@ void loop() {
     byte RY = ps2x.Analog(PSS_RY);
     byte RX = ps2x.Analog(PSS_RX);
 
-    if (LY < 110) {
+    if (LY < 110)
+    {
       motor.speed(250 - LY);
       motor.forward();
       delay(50);
     }
 
-    if (LY > 140) {
+    if (LY > 140)
+    {
       motor.speed(LY - 10);
       motor.backward();
       delay(50);
     }
 
-    if (LX < 110) {
+    if (LX < 110)
+    {
       motor.speed(255);
       motor.left();
       delay(50);
     }
 
-    if (LX > 140) {
+    if (LX > 140)
+    {
       motor.speed(255);
       motor.right();
       delay(50);
     }
 
-    if (LY >= 110 && LY <= 140 && LX >= 110 && LX <= 140) {
+    if (LY >= 110 && LY <= 140 && LX >= 110 && LX <= 140)
+    {
       motor.stop();
       delay(50);
     }
 
-    if (RY < 110) {
+    if (RY < 110)
+    {
       begin1 = begin1 - 5;
       pwm.setPWM(0, 0, begin1);
-      if (begin1 < 76) {
+      if (begin1 < 76)
+      {
         begin1 = 75;
       }
     }
 
-    if (RY > 140) {
+    if (RY > 140)
+    {
       begin1 = begin1 + 5;
       pwm.setPWM(0, 0, begin1);
-      if (begin1 > 451) {
+      if (begin1 > 451)
+      {
         begin1 = 450;
       }
     }
 
-    if (RX < 110) {
+    if (RX < 110)
+    {
       begin2 = begin2 + 5;
       pwm.setPWM(1, 0, begin2);
-      if (begin2 > 421) {
+      if (begin2 > 421)
+      {
         begin2 = 420;
       }
     }
 
-    if (RX > 140) {
+    if (RX > 140)
+    {
       begin2 = begin2 - 5;
       pwm.setPWM(1, 0, begin2);
-      if (begin2 < 101) {
+      if (begin2 < 101)
+      {
         begin2 = 100;
       }
     }
 
-    if (ps2x.Button(PSB_L2)) {
+    if (ps2x.Button(PSB_L2))
+    {
       begin3 = begin3 + 5;
       pwm.setPWM(2, 0, begin3);
-      if (begin3 > 351) {
+      if (begin3 > 351)
+      {
         begin3 = 350;
       }
     }
 
-    if (ps2x.Button(PSB_R2)) {
+    if (ps2x.Button(PSB_R2))
+    {
       begin3 = begin3 - 5;
       pwm.setPWM(2, 0, begin3);
-      if (begin3 < 81) {
+      if (begin3 < 81)
+      {
         begin3 = 75;
       }
     }
 
-    if (ps2x.Button(PSB_L1)) {
+    if (ps2x.Button(PSB_L1))
+    {
       begin4 = begin4 + 5;
       pwm.setPWM(3, 0, begin4);
-      if (begin4 > 405) {
+      if (begin4 > 405)
+      {
         begin4 = 405;
       }
     }
 
-    if (ps2x.Button(PSB_R1)) {
+    if (ps2x.Button(PSB_R1))
+    {
       begin4 = begin4 - 5;
       pwm.setPWM(3, 0, begin4);
       Serial.print(begin4);
-      if (begin4 < 245)  //限位
+      if (begin4 < 245) // 限位
       {
         begin4 = 245;
       }
@@ -147,7 +172,8 @@ void loop() {
   }
 }
 
-void servos_begin() {
+void servos_begin()
+{
   pwm.setPWM(0, 0, begin1);
   pwm.setPWM(1, 0, begin2);
   pwm.setPWM(2, 0, begin3);

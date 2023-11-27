@@ -10,4 +10,4 @@ Servo drive board:PCA9685
 
 | Clamping display                                                        | Mobile displays                                                         |
 | :---------------------------------------------------------------------- | :---------------------------------------------------------------------- |
-| <video controls ><source src="Images/004.MP4" type="video/mp4"></video> | <video controls ><source src="Images/003.MP4" type="video/mp4"></video> |
+| <video controls ><source src="images/004.MP4" type="video/mp4"></video> | <video controls ><source src="images/003.MP4" type="video/mp4"></video> |
